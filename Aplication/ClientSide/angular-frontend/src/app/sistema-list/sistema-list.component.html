@@ -1,0 +1,27 @@
+<h2>Lista de Sistemas</h2>
+<table class=" table table-striped">
+    <thead>
+        <tr>
+            <th>Descricao</th>
+            <th>Sigla</th>
+            <th>Email</th>
+            <th>URL</th>
+            <th>Status</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let sistema of sistemas">
+            <td>{{ sistema.descricao }}</td>
+            <td>{{ sistema.sigla }}</td>
+            <td>{{ sistema.emailAtendimento }}</td>
+            <td>{{ sistema.url }}</td>
+            <td>{{ sistema.status }}</td>
+            <td>
+                <button (click) = "updateSistema(sistema.id)" class="btn btn-info">Editar</button>
+            </td>
+
+        </tr>
+    </tbody>
+
+</table>

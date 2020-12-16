@@ -1,0 +1,36 @@
+<div class="col-md-6 offset-md-3">
+    <h3> Adicionar Sistema </h3>
+
+    <form (ngSubmit) = "onSubmit()">
+
+        <div class="form-group">
+            <label>Descricao</label>
+            <input type="text" class="form-control" id="descricao"
+            [(ngModel)] = "sistema.descricao" name = "descricao">
+        </div>
+
+        <div class="form-group">
+            <label>Url</label>
+            <input type="text" class="form-control" id="url"
+            [(ngModel)] = "sistema.url" name = "url">
+        </div>
+
+
+        <div class="form-group">
+            <label>Sigla</label>
+            <input type="text" class="form-control" id="sigla"
+            [(ngModel)] = "sistema.sigla" name = "sigla">
+        </div>
+
+        <div class="form-group">
+            <label>Email Atendimento</label>
+            <input type="text" class="form-control" id="emailAtendimento"
+            [(ngModel)] = "sistema.emailAtendimento" name = "emailAtendimento">
+        </div>
+
+        <button class="btn btn-success" type = "submit">Adicionar</button>
+
+
+
+    </form>
+</div>
