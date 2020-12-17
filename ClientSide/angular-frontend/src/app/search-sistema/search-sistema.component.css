@@ -1,0 +1,10 @@
+.search-box{
+    background: #0f65d6;
+    border: 1px solid #fff9f9;
+    padding: 3%;
+    color: white;
+}
+.search-box input:focus{
+    box-shadow:none;
+    border:2px solid #f1da05;
+}
