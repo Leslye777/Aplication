@@ -1,26 +1,43 @@
-<table class=" table table-striped border border-light">
-    <thead>
-        <tr>
-            <th>Descricao</th>
-            <th>Sigla</th>
-            <th>Email</th>
-            <th>URL</th>
-            <th>Status</th>
-            <th>Ações</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let sistema of sistemas">
-            <td>{{ sistema.descricao }}</td>
-            <td>{{ sistema.sigla }}</td>
-            <td>{{ sistema.emailAtendimento }}</td>
-            <td>{{ sistema.url }}</td>
-            <td>{{ sistema.status }}</td>
-            <td>
-                <button (click) = "updateSistema(sistema.id)" class="btn btn-info">Editar</button>
-            </td>
 
-        </tr>
-    </tbody>
+    <table class=" table table-striped border border-light">
+        <thead>
+            <tr>
+                <th>Descricao</th>
+                <th>Sigla</th>
+                <th>Email</th>
+                <th>URL</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let sistema of sistemas">
+                <td>{{ sistema.descricao }}</td>
+                <td>{{ sistema.sigla }}</td>
+                <td>{{ sistema.emailAtendimento }}</td>
+                <td>{{ sistema.url }}</td>
+                <td>{{ sistema.status }}</td>
+                <td>
+                    <button (click) = "updateSistema(sistema.id)" class="btn btn-info">Editar</button>
+                </td>
 
-</table>
+            </tr>
+        </tbody>
+    </table>
+
+    <nav aria-label="Page navigation example">
+        
+        <ul class="pagination">
+            <li class="page-item {{inicial()}}"><a class="page-link" href="{{url+0}}">Inicio</a></li>
+            <li class="page-item {{inicial()}}"><a (click) = "decrementador()" class="page-link" href="{{url+this.atual}}">Ant</a></li>
+            <li *ngFor="let item of arrayOne(this.totalPages); let i = index;" class="page-item {{comparacao(i)}}">
+                <a  class="page-link" href="{{url+i}}">{{i+1}}</a>
+            </li>
+            <li class="page-item {{final()}}"><a (click) = "incrementador()" class="page-link" href="{{url+this.atual}}">Prox</a></li>
+            <li class="page-item {{final()}}"><a  class="page-link" href="{{url+this.ultima}}">Ultima</a></li>
+
+        </ul>
+
+    </nav>
+
+

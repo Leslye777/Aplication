@@ -1,13 +1,11 @@
 
 
 
-import { UpdateSistemaComponent } from './../update-sistema/update-sistema.component';
-import { SistemaService } from './../sistema.service';
+import { SistemaService } from '../sistema.service';
 import { Component, OnInit } from '@angular/core';
-import { Sistema } from '../sistema';
-import { Router, Route, ActivatedRoute } from '@angular/router';
-import { Page } from '../page';
-
+import { Sistema } from '../models/sistema';
+import { Router, ActivatedRoute } from '@angular/router';
+import { range } from 'rxjs';
 
 
 @Component({
@@ -16,37 +14,78 @@ import { Page } from '../page';
   styleUrls: ['./sistema-list.component.css']
 })
 export class SistemaListComponent implements OnInit {
-
-  sistemas: Sistema[] | undefined;
-  page: Page = new Page();
-  totalPages!: number;
-  number!: number;
   
+  page:any;
+  sistemas!: Sistema[];
+  totalPages!: number;
+  pagina!: number;
+  atual=0;
+  ultima = 0;
 
-  url: String = "http://localhost:4200/sistemas/";
+  arrayOne(n: number): any[] {
+    return Array(n);
+  }
 
   constructor(private sistemaService: SistemaService,
     private route: ActivatedRoute,
     private router: Router) { }
 
   ngOnInit(): void {
-    this.number = this.route.snapshot.params['number'];
-    this.getSistemas(this.number);
+    this.pagina = this.route.snapshot.params['pagina'];
+    this.getSistemas(this.pagina);
   }
 
-
-  private getSistemas(number: number){
-    this.sistemaService.getSistemasList(number).subscribe(data => {
+  getSistemas(pagina: number){
+    this.sistemaService.getSistemasList(pagina).subscribe(data => {
       this.page = data;
-      this.sistemas = this.page.content;
+      pagina = this.page.number;
       this.totalPages = this.page.totalPages;
-    })
+      this.atual = this.page.number;
+      this.sistemas = this.page.content;
+      this.ultima = this.totalPages-1;
+      console.log("Pagina atual"+this.atual);
+      console.log("Pagina atual"+this.totalPages);
+    }
+    )
   }
+
+  incrementador(){
+    this.atual = this.atual+1;
+  }  
+
+  decrementador(){
+    this.atual = this.atual-1;
+  }
+
+  url = "http://localhost:4200/sistemas/"
+
 
   updateSistema(id:any){
     this.router.navigate(['update-sistema',id]);
+    
+  }
+
+  inicial(): String{
+    if(this.atual===0){
+      return "disabled";
+    }
+    return "";
+  }
+
+  final(): String{
+    if(this.atual===this.totalPages-1){
+      return "disabled";
+    }
+    return ""
   }
 
 
 
+  comparacao(i: number): String{
+    if(this.atual === i){
+      return "active";
+    }
+    return "";
+
+  }
 }

@@ -1,5 +1,5 @@
 import { SistemaService } from './../sistema.service';
-import { Sistema } from './../sistema';
+import { Sistema } from '../models/sistema';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -28,7 +28,7 @@ export class CreateSistemaComponent implements OnInit {
   }
 
   goToSistemaList(){
-    this.router.navigate(['/sistemas']);
+    this.router.navigate(['/']);
   }
 
   onSubmit(){

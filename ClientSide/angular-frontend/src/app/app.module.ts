@@ -16,12 +16,13 @@ import { SearchSistemaComponent } from './search-sistema/search-sistema.componen
 
 
 @NgModule({
-  declarations: [	
+  declarations: [		
     AppComponent,
     SistemaListComponent,
     CreateSistemaComponent,
     UpdateSistemaComponent,
-    SearchSistemaComponent
+    SearchSistemaComponent,
+      
    ],
   imports: [
     BrowserModule,

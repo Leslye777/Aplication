@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Sistema } from '../sistema';
+import { Sistema } from '../models/sistema';
 import { SistemaService } from '../sistema.service';
 
 

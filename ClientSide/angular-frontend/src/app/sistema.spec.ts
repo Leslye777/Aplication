@@ -1,4 +1,4 @@
-import { Sistema } from './sistema';
+import { Sistema } from './models/sistema';
 
 describe('Sistema', () => {
   it('should create an instance', () => {
