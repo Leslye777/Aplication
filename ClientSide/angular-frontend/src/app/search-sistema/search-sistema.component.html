@@ -3,11 +3,11 @@
         <div class="row justify-content-start">
             <div class="col-8" style="margin-top: 5px;">
                 <input type="text" id="descricao" class="form-control" 
-                placeholder="Descrição" [(ngModel)] = "descricao" name = "descricao">
+                placeholder="Descrição" [(ngModel)] = "descricao" name = "Descricao">
             </div>
             <div class="col-4" style="margin-top: 5px;">
-                <input type="text" id="url2" class="form-control" 
-                [(ngModel)] = "url2" name = "url2" placeholder="Url">
+                <input type="text" id="sigla" class="form-control" 
+                [(ngModel)] = "sigla" name = "sigla" placeholder="Sigla">
             </div>
             
             <div class="col-8" style="margin-top: 5px;"> 
@@ -50,16 +50,21 @@
     <nav aria-label="Page navigation example">
         
         <ul class="pagination">
-            <li class="page-item {{inicial()}}"><a class="page-link" href="{{url+0}}">Inicio</a></li>
-            <li class="page-item {{inicial()}}"><a (click) = "decrementador()" class="page-link" href="{{url+this.atual}}">Ant</a></li>
+            <li class="page-item {{inicial()}}"><a class="page-link" (click) = "teste(0)">Inicio</a></li>
+            <li class="page-item {{inicial()}}"><a (click) = "decrementador()" class="page-link" (click) = "teste(this.atual)">Ant</a></li>
             <li *ngFor="let item of arrayOne(this.totalPages); let i = index;" class="page-item {{comparacao(i)}}">
-                <a  class="page-link" href="{{url+i}}">{{i+1}}</a>
+                <a  class="page-link" (click) = "teste(i)">{{i+1}}</a>
             </li>
-            <li class="page-item {{final()}}"><a (click) = "incrementador()" class="page-link" href="{{url+this.atual}}">Prox</a></li>
-            <li class="page-item {{final()}}"><a  class="page-link" href="{{url+this.ultima}}">Ultima</a></li>
+            <li class="page-item {{final()}}"><a (click) = "incrementador()" class="page-link"
+                (click) = "teste(this.atual)">Prox</a></li>
+            <li class="page-item {{final()}}" (click) = "teste(this.ultima)"><a  class="page-link" >Ultima</a></li>
 
         </ul>
 
     </nav>
+    
 
+</div>
+
+   
 

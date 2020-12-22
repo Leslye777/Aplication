@@ -1,10 +1,10 @@
 
 import { UpdateSistemaComponent } from './update-sistema/update-sistema.component';
-import { Sistema } from './models/sistema';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Page } from './models/page';
+import { Sistema } from './models/sistema';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,9 @@ export class SistemaService {
  
   getSistemasList(pagina: number): Observable<Page>{
     return this.HttpClient.get<Page>(`${this.baseURL}?pagina=${pagina}`);
+  }
+  getSistemasListTeste(pagina: number, descricao: String, sigla: String): Observable<Page>{
+    return this.HttpClient.get<Page>(`${this.baseURL}?pagina=${pagina}&descricao=${descricao}&sigla=${sigla}`);
   }
 
   getSistemaById(id: number): Observable<Sistema>{

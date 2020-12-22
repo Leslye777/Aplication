@@ -14,10 +14,11 @@ var sistema_list_component_1 = require("./sistema-list/sistema-list.component");
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var routes = [
-    { path: "sistemas/:pagina", component: sistema_list_component_1.SistemaListComponent },
-    { path: "search-sistema/:pagina", component: search_sistema_component_1.SearchSistemaComponent },
+    { path: "search-sistema/:pagina/:descricao/:sigla", component: search_sistema_component_1.SearchSistemaComponent },
+    { path: "search-sistema/:pagina/:descricao", component: search_sistema_component_1.SearchSistemaComponent },
+    { path: "search-sistema", component: search_sistema_component_1.SearchSistemaComponent },
     { path: 'create-sistema', component: create_sistema_component_1.CreateSistemaComponent },
-    { path: '', redirectTo: 'search-sistema/0', pathMatch: 'full' },
+    { path: "sistemas/:pagina", component: sistema_list_component_1.SistemaListComponent },
     { path: 'update-sistema/:id', component: update_sistema_component_1.UpdateSistemaComponent }
 ];
 var AppRoutingModule = /** @class */ (function () {

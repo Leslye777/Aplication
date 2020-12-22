@@ -39,16 +39,27 @@ public class SistemaController {
 	@GetMapping("/sistemas")
 	public Page<Sistema> getSistemas(@RequestParam(required = false) String descricao,
 			@RequestParam(required = false) String sigla,
-			@RequestParam(required = false) String email,
+			@RequestParam(required = false) String emailAtendimento,
 			@RequestParam int pagina){
 		
-		Pageable paginacao = PageRequest.of(pagina, 5);
+		Pageable paginacao = PageRequest.of(pagina, 10);
 		
-		Page<Sistema> sistemas = (Page<Sistema>) sistemaRepository.findAll(paginacao);
+		if(descricao != null) {
+			
+			
+			Page <Sistema> sistema = (Page<Sistema>) 
+					sistemaRepository.FindByQuery(descricao,sigla,paginacao);
+			
+			return sistema;
+			
+		}
 		
-		return sistemas;
+		
+		Page<Sistema> sistema = (Page<Sistema>) sistemaRepository.findAll(paginacao);
+		
+		return sistema;
 	}
-	//ola
+
 	@PostMapping("/sistemas")
 	public Sistema createSistema(@RequestBody Sistema sistema) {
 		sistema.setStatus("Ativo");

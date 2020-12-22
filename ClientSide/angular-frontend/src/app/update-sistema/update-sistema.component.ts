@@ -33,7 +33,10 @@ export class UpdateSistemaComponent implements OnInit {
   }
 
   goToSistemaList(){
+    alert("Operação realizada com sucesso!");
     this.router.navigate(['/']);
   }
+
+  
 
 }

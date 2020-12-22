@@ -16,6 +16,9 @@ var SistemaService = /** @class */ (function () {
     SistemaService.prototype.getSistemasList = function (pagina) {
         return this.HttpClient.get(this.baseURL + "?pagina=" + pagina);
     };
+    SistemaService.prototype.getSistemasListTeste = function (pagina, descricao, sigla) {
+        return this.HttpClient.get(this.baseURL + "?pagina=" + pagina + "&descricao=" + descricao + "&sigla=" + sigla);
+    };
     SistemaService.prototype.getSistemaById = function (id) {
         return this.HttpClient.get(this.baseURL + "/" + id);
     };

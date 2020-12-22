@@ -22,6 +22,10 @@ export class SistemaListComponent implements OnInit {
   atual=0;
   ultima = 0;
 
+  url2 = "null"
+  descricao: string = "null"
+  email = "null";
+
   arrayOne(n: number): any[] {
     return Array(n);
   }
@@ -31,7 +35,7 @@ export class SistemaListComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    this.pagina = this.route.snapshot.params['pagina'];
+    this.pagina = parseInt(this.route.snapshot.params['pagina']);
     this.getSistemas(this.pagina);
   }
 
@@ -43,11 +47,11 @@ export class SistemaListComponent implements OnInit {
       this.atual = this.page.number;
       this.sistemas = this.page.content;
       this.ultima = this.totalPages-1;
-      console.log("Pagina atual"+this.atual);
-      console.log("Pagina atual"+this.totalPages);
     }
     )
   }
+
+
 
   incrementador(){
     this.atual = this.atual+1;
@@ -58,7 +62,6 @@ export class SistemaListComponent implements OnInit {
   }
 
   url = "http://localhost:4200/sistemas/"
-
 
   updateSistema(id:any){
     this.router.navigate(['update-sistema',id]);
@@ -79,6 +82,9 @@ export class SistemaListComponent implements OnInit {
     return ""
   }
 
+  teste(numero: number){
+    this.getSistemas(numero);
+  }
 
 
   comparacao(i: number): String{
@@ -88,4 +94,8 @@ export class SistemaListComponent implements OnInit {
     return "";
 
   }
+
+  
+
+  
 }

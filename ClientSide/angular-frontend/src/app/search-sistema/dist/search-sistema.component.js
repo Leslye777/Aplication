@@ -21,18 +21,19 @@ var SearchSistemaComponent = /** @class */ (function () {
         return Array(n);
     };
     SearchSistemaComponent.prototype.ngOnInit = function () {
-        this.pagina = this.route.snapshot.params['pagina'];
-        this.getSistemas(this.pagina);
+        this.pagina = 0;
     };
-    SearchSistemaComponent.prototype.getSistemas = function (pagina) {
+    SearchSistemaComponent.prototype.getSistemasTeste = function (pagina, descricao, sigla) {
         var _this = this;
-        this.sistemaService.getSistemasList(pagina).subscribe(function (data) {
+        this.sistemaService.getSistemasListTeste(pagina, descricao, sigla).subscribe(function (data) {
             _this.page = data;
             pagina = _this.page.number;
             _this.totalPages = _this.page.totalPages;
             _this.atual = _this.page.number;
             _this.sistemas = _this.page.content;
             _this.ultima = _this.totalPages - 1;
+            _this.isEmpty();
+            console.log(descricao, pagina, sigla, _this.ultima);
         });
     };
     SearchSistemaComponent.prototype.incrementador = function () {
@@ -62,7 +63,16 @@ var SearchSistemaComponent = /** @class */ (function () {
         }
         return "";
     };
+    SearchSistemaComponent.prototype.isEmpty = function () {
+        if (this.totalPages === 0) {
+            alert("Nenhum Sistema foi encontrado. Favor revisar os critérios da sua pesquisa!");
+        }
+    };
+    SearchSistemaComponent.prototype.teste = function (vai) {
+        this.getSistemasTeste(vai, this.descricao, this.sigla);
+    };
     SearchSistemaComponent.prototype.onSearch = function () {
+        this.getSistemasTeste(this.pagina, this.descricao, this.sigla);
     };
     SearchSistemaComponent = __decorate([
         core_1.Component({

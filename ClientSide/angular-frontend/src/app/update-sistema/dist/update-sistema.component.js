@@ -30,6 +30,7 @@ var UpdateSistemaComponent = /** @class */ (function () {
         }, function (error) { return console.log(error); });
     };
     UpdateSistemaComponent.prototype.goToSistemaList = function () {
+        alert("Operação realizada com sucesso!");
         this.router.navigate(['/']);
     };
     UpdateSistemaComponent = __decorate([

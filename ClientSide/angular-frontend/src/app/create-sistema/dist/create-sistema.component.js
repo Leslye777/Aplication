@@ -26,7 +26,8 @@ var CreateSistemaComponent = /** @class */ (function () {
         }, function (error) { return console.log(error); });
     };
     CreateSistemaComponent.prototype.goToSistemaList = function () {
-        this.router.navigate(['/sistemas']);
+        alert("Operação realizada com sucesso!");
+        this.router.navigate(['/']);
     };
     CreateSistemaComponent.prototype.onSubmit = function () {
         this.sistema.status = "Ativo";

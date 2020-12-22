@@ -20,7 +20,7 @@ export class SearchSistemaComponent implements OnInit {
   atual=0;
   ultima = 0;
 
-  url2!: String;
+  sigla!: String;
   descricao!: String;
   email!: String;
 
@@ -33,18 +33,20 @@ export class SearchSistemaComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    this.pagina = this.route.snapshot.params['pagina'];
-    this.getSistemas(this.pagina);
+    this.pagina = 0;
   }
 
-  getSistemas(pagina: number){
-    this.sistemaService.getSistemasList(pagina).subscribe(data => {
+
+  getSistemasTeste(pagina: number, descricao: String, sigla: String){
+    this.sistemaService.getSistemasListTeste(pagina, descricao, sigla).subscribe(data => {
       this.page = data;
       pagina = this.page.number;
       this.totalPages = this.page.totalPages;
       this.atual = this.page.number;
       this.sistemas = this.page.content;
       this.ultima = this.totalPages-1;
+      this.isEmpty();
+      console.log(descricao,pagina,sigla,this.ultima);
     }
     )
   }
@@ -87,8 +89,20 @@ export class SearchSistemaComponent implements OnInit {
 
   }
 
-  onSearch(){
-    
+
+  isEmpty(){
+    if(this.totalPages===0){
+      alert("Nenhum Sistema foi encontrado. Favor revisar os critérios da sua pesquisa!");
+    }
   }
 
+  teste(vai: number){
+    this.getSistemasTeste(vai, this.descricao, this.sigla);
+  }
+
+  
+
+  onSearch(){
+    this.getSistemasTeste(this.pagina,this.descricao,this.sigla);
+  }
 }

@@ -7,10 +7,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  {path: "sistemas/:pagina", component: SistemaListComponent},
-  {path: "search-sistema/:pagina", component: SearchSistemaComponent},
+  
+  {path: "search-sistema/:pagina/:descricao/:sigla", component: SearchSistemaComponent},
+  {path: "search-sistema/:pagina/:descricao", component: SearchSistemaComponent},
+  {path: "search-sistema", component: SearchSistemaComponent},
   {path: 'create-sistema', component: CreateSistemaComponent},
-  {path: '', redirectTo: 'search-sistema/0', pathMatch: 'full'},
+  {path: "sistemas/:pagina", component: SistemaListComponent},
   {path: 'update-sistema/:id',component: UpdateSistemaComponent}
 ];
 

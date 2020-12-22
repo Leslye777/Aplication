@@ -15,13 +15,16 @@ var SistemaListComponent = /** @class */ (function () {
         this.router = router;
         this.atual = 0;
         this.ultima = 0;
+        this.url2 = "null";
+        this.descricao = "null";
+        this.email = "null";
         this.url = "http://localhost:4200/sistemas/";
     }
     SistemaListComponent.prototype.arrayOne = function (n) {
         return Array(n);
     };
     SistemaListComponent.prototype.ngOnInit = function () {
-        this.pagina = this.route.snapshot.params['pagina'];
+        this.pagina = parseInt(this.route.snapshot.params['pagina']);
         this.getSistemas(this.pagina);
     };
     SistemaListComponent.prototype.getSistemas = function (pagina) {
@@ -33,8 +36,6 @@ var SistemaListComponent = /** @class */ (function () {
             _this.atual = _this.page.number;
             _this.sistemas = _this.page.content;
             _this.ultima = _this.totalPages - 1;
-            console.log("Pagina atual" + _this.atual);
-            console.log("Pagina atual" + _this.totalPages);
         });
     };
     SistemaListComponent.prototype.incrementador = function () {
@@ -57,6 +58,9 @@ var SistemaListComponent = /** @class */ (function () {
             return "disabled";
         }
         return "";
+    };
+    SistemaListComponent.prototype.teste = function (numero) {
+        this.getSistemas(numero);
     };
     SistemaListComponent.prototype.comparacao = function (i) {
         if (this.atual === i) {

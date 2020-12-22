@@ -7,3 +7,4 @@
 .search-box input:focus{
     box-shadow: yellow;
 }
+li{cursor:pointer;}
