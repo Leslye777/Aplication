@@ -15,6 +15,8 @@ var CreateSistemaComponent = /** @class */ (function () {
         this.router = router;
         this.sistema = new sistema_1.Sistema();
         this.dataAtual = new Date();
+        this.email = "";
+        this.reg = /^[\w.\+]+@\w+.\w{2,}(?:.\w{2})?$/;
     }
     CreateSistemaComponent.prototype.ngOnInit = function () {
     };
@@ -35,7 +37,21 @@ var CreateSistemaComponent = /** @class */ (function () {
         this.sistema.dataAlteracao = this.dataAtual;
         this.sistema.usuarioNome = "user";
         console.log(this.sistema);
+        this.email = this.sistema.emailAtendimento;
+        if (!this.reg.test(this.sistema.emailAtendimento)) {
+            alert("email invalido");
+            return;
+        }
+        if ((this.sistema.descricao === undefined || this.sistema.sigla === undefined) ||
+            this.sistema.descricao === null || this.sistema.sigla === null ||
+            this.sistema.descricao === "" || this.sistema.sigla === "") {
+            alert("Dados obrigatórios não informados");
+            return;
+        }
         this.saveSistema();
+    };
+    CreateSistemaComponent.prototype.isValidEmail = function (email) {
+        return this.reg.test(email);
     };
     CreateSistemaComponent = __decorate([
         core_1.Component({

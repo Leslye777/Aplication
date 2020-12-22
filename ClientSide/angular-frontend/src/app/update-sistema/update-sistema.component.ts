@@ -27,9 +27,21 @@ export class UpdateSistemaComponent implements OnInit {
   }
   
   onSubmit(){
+    if(!this.isValidEmail(this.sistema.emailAtendimento)){
+      alert("E-mail invalido");
+      return  
+    }
+    if((this.sistema.descricao===undefined || this.sistema.sigla===undefined) ||
+    this.sistema.descricao===null||this.sistema.sigla===null||
+    this.sistema.descricao===""||this.sistema.sigla===""){
+      alert("Dados obrigatórios não informados");
+      return
+    }
     this.sistemaService.UpdateSistema(this.id, this.sistema).subscribe(data =>{
       this.goToSistemaList();
     }, error => console.log(error));
+    
+    
   }
 
   goToSistemaList(){
@@ -37,6 +49,13 @@ export class UpdateSistemaComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  
+ reg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+
+
+isValidEmail(email: any){
+  return this.reg.test(email);
+}
+
+
 
 }

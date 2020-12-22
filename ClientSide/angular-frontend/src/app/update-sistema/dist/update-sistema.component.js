@@ -15,6 +15,7 @@ var UpdateSistemaComponent = /** @class */ (function () {
         this.route = route;
         this.router = router;
         this.sistema = new sistema_1.Sistema();
+        this.reg = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
     }
     UpdateSistemaComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -25,6 +26,16 @@ var UpdateSistemaComponent = /** @class */ (function () {
     };
     UpdateSistemaComponent.prototype.onSubmit = function () {
         var _this = this;
+        if (!this.isValidEmail(this.sistema.emailAtendimento)) {
+            alert("E-mail invalido");
+            return;
+        }
+        if ((this.sistema.descricao === undefined || this.sistema.sigla === undefined) ||
+            this.sistema.descricao === null || this.sistema.sigla === null ||
+            this.sistema.descricao === "" || this.sistema.sigla === "") {
+            alert("Dados obrigatórios não informados");
+            return;
+        }
         this.sistemaService.UpdateSistema(this.id, this.sistema).subscribe(function (data) {
             _this.goToSistemaList();
         }, function (error) { return console.log(error); });
@@ -32,6 +43,9 @@ var UpdateSistemaComponent = /** @class */ (function () {
     UpdateSistemaComponent.prototype.goToSistemaList = function () {
         alert("Operação realizada com sucesso!");
         this.router.navigate(['/']);
+    };
+    UpdateSistemaComponent.prototype.isValidEmail = function (email) {
+        return this.reg.test(email);
     };
     UpdateSistemaComponent = __decorate([
         core_1.Component({

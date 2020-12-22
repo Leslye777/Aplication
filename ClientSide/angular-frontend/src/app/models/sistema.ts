@@ -2,7 +2,7 @@ export class Sistema {
     id: number | undefined;
     descricao: string | undefined;
     sigla: string | undefined;
-    emailAtendimento: string | undefined;
+    emailAtendimento!: string;
     url: string | undefined;
     status: string | undefined;
     dataAlteracao: Date | undefined; 
