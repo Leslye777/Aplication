@@ -38,6 +38,8 @@ export class SearchSistemaComponent implements OnInit {
 
 
   getSistemasTeste(pagina: number, descricao: String, sigla: String){
+    descricao = this.verificaUndefined(descricao);
+    sigla = this.verificaUndefined(sigla);
     this.sistemaService.getSistemasListTeste(pagina, descricao, sigla).subscribe(data => {
       this.page = data;
       pagina = this.page.number;
@@ -46,7 +48,7 @@ export class SearchSistemaComponent implements OnInit {
       this.sistemas = this.page.content;
       this.ultima = this.totalPages-1;
       this.isEmpty();
-      console.log(descricao,pagina,sigla,this.ultima);
+      console.log("Descricao "+descricao+" Pagina "+pagina+" Sigla "+sigla);
     }
     )
   }
@@ -96,13 +98,20 @@ export class SearchSistemaComponent implements OnInit {
     }
   }
 
-  teste(vai: number){
-    this.getSistemasTeste(vai, this.descricao, this.sigla);
+  teste(pagina: number){
+    this.getSistemasTeste(pagina, this.descricao, this.sigla);
   }
 
   
 
   onSearch(){
     this.getSistemasTeste(this.pagina,this.descricao,this.sigla);
+  }
+
+  verificaUndefined(campo: any){
+    if(campo===""){
+      return undefined
+    }
+    return campo;
   }
 }

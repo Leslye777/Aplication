@@ -25,6 +25,8 @@ var SearchSistemaComponent = /** @class */ (function () {
     };
     SearchSistemaComponent.prototype.getSistemasTeste = function (pagina, descricao, sigla) {
         var _this = this;
+        descricao = this.verificaUndefined(descricao);
+        sigla = this.verificaUndefined(sigla);
         this.sistemaService.getSistemasListTeste(pagina, descricao, sigla).subscribe(function (data) {
             _this.page = data;
             pagina = _this.page.number;
@@ -33,7 +35,7 @@ var SearchSistemaComponent = /** @class */ (function () {
             _this.sistemas = _this.page.content;
             _this.ultima = _this.totalPages - 1;
             _this.isEmpty();
-            console.log(descricao, pagina, sigla, _this.ultima);
+            console.log("Descricao " + descricao + " Pagina " + pagina + " Sigla " + sigla);
         });
     };
     SearchSistemaComponent.prototype.incrementador = function () {
@@ -68,11 +70,17 @@ var SearchSistemaComponent = /** @class */ (function () {
             alert("Nenhum Sistema foi encontrado. Favor revisar os critérios da sua pesquisa!");
         }
     };
-    SearchSistemaComponent.prototype.teste = function (vai) {
-        this.getSistemasTeste(vai, this.descricao, this.sigla);
+    SearchSistemaComponent.prototype.teste = function (pagina) {
+        this.getSistemasTeste(pagina, this.descricao, this.sigla);
     };
     SearchSistemaComponent.prototype.onSearch = function () {
         this.getSistemasTeste(this.pagina, this.descricao, this.sigla);
+    };
+    SearchSistemaComponent.prototype.verificaUndefined = function (campo) {
+        if (campo === "") {
+            return undefined;
+        }
+        return campo;
     };
     SearchSistemaComponent = __decorate([
         core_1.Component({

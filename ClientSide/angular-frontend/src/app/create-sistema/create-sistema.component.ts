@@ -19,7 +19,7 @@ export class CreateSistemaComponent implements OnInit {
   constructor(private sistemaService:SistemaService, private router: Router) { }
 
   ngOnInit(): void {
-  }
+  } 
 
   saveSistema(){
     this.sistemaService.createSistema(this.sistema).subscribe(data =>{

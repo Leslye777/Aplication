@@ -13,6 +13,8 @@ export class UpdateSistemaComponent implements OnInit {
 
   id!: number;
   sistema: Sistema = new Sistema();
+
+
   
   constructor(private sistemaService: SistemaService,
     private route: ActivatedRoute,
